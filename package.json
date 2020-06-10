@@ -11,21 +11,31 @@
   ],
   "description": "This is a ts, react, prettier, eslint, webpack boilerplate template",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"WARNING: no test specified\" && exit 0",
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development --open",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm run lint && npm test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "author": "romain.francois@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "8.3.4",
     "@types/node": "13.13.0",
     "@types/react": "16.9.35",
     "@types/react-dom": "16.9.8",
     "@types/webpack": "4.41.17",
     "css-loader": "3.5.3",
     "html-webpack-plugin": "4.3.0",
+    "husky": "4.2.5",
     "sass": "1.26.8",
     "sass-loader": "8.0.2",
     "source-map-loader": "1.0.0",
