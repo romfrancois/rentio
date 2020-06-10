@@ -1,0 +1,189 @@
+html {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font: normal normal normal 1rem/1.6 -apple-system, BlinkMacSystemFont,
+		Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+}
+
+body {
+	color: #404040;
+	background: white;
+	font-size: 1rem;
+}
+
+.items {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -10px;
+	margin-top: -10px;
+}
+
+.items .oneColumn {
+	flex: 1 0 100%;
+	box-sizing: border-box;
+	color: #171e42;
+	padding: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.items .twoColumn {
+	flex: 1 0 45%;
+	box-sizing: border-box;
+	color: #171e42;
+	padding: 10px;
+	margin-left: 10px;
+	/* margin-top: 10px; */
+}
+
+.items .threeColumn {
+	flex: 1 0 30%;
+	box-sizing: border-box;
+	color: #171e42;
+	padding: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+fieldset {
+	background-color: aliceblue;
+	border-radius: 20px;
+	max-width: 800px;
+	margin-bottom: 20px;
+}
+
+label {
+	font-weight: 600;
+	/* max-width: 100%; */
+	/* display: block; */
+	margin: 1rem 0 0.5rem;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+
+.menage {
+	margin-left: 20px;
+}
+
+/***********************************/
+[type="datetime-local"],
+select,
+textarea {
+	border: 1px solid #cdcdcd;
+	border-radius: 4px;
+	/* padding: 0.75rem; */
+	outline: none;
+	background: transparent;
+	font-size: 1rem;
+	height: 45px;
+	margin-left: 10px;
+}
+
+[type="datetime-local"] {
+	margin-top: 20px;
+	margin-right: 400px;
+	margin-left: 0;
+	height: 0;
+}
+
+ul li ul {
+	margin-bottom: 0;
+}
+
+ol li ol {
+	margin-bottom: 0;
+}
+
+input {
+	padding: 0.75rem;
+}
+
+[type="text"],
+[type="email"] {
+	width: 200px;
+	line-height: 1;
+	font-size: 1rem;
+	background: transparent;
+	border: 1px solid #cdcdcd;
+}
+
+fieldset legend {
+	font-style: italic;
+	font-size: 1.5rem;
+}
+
+.input-long {
+	width: 60%;
+}
+
+.input-medium {
+	width: 400px;
+}
+
+.input-short {
+	width: 200px;
+}
+
+.input-very-short {
+	width: 150px;
+}
+
+.input-very-very-short {
+	width: 100px;
+}
+
+.input-super-short {
+	width: 100px;
+}
+
+.dateHeureFin {
+	margin-top: 50px;
+}
+
+.input-checkbox {
+	margin-top: 20px;
+}
+
+.label-checkbox {
+	padding-left: 20px;
+	display: inline;
+}
+
+.telephone {
+	display: inline-block;
+	position: relative;
+}
+
+.telephone-padding {
+	padding-left: 60px;
+	width: 150px;
+}
+
+.telephone::before {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	transition: all 0.05s ease-in-out;
+}
+
+[data-countrycode]::before {
+	content: attr(data-countrycode);
+	position: absolute;
+	top: 20px;
+	left: 15px;
+	transition: all 0.05s ease-in-out;
+}
+
+.show {
+	display: block !important;
+}
+
+.hide {
+	display: none !important;
+}
+
+.renting-submit {
+	height: 50px;
+    font-size: 14px;
+}
