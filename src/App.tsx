@@ -10,6 +10,7 @@ import { initDocsState, DocsTabState } from './Forms/FormDocs';
 import GConnect from './GConnect';
 
 import { GoogleStatus } from './Helpers/Connexion';
+import GoogleSheet from './GoogleSheet';
 
 type AppTab = {
     [tabName: string]:
@@ -44,12 +45,16 @@ const initState: AppState = {
 class App extends React.Component {
     state: AppState = initState;
 
+    private googleSheet: GoogleSheet;
+
     constructor(props: any) {
         super(props);
 
         this.saveFormsData = this.saveFormsData.bind(this);
         this.loadSavedData = this.loadSavedData.bind(this);
         this.updateGStatus = this.updateGStatus.bind(this);
+
+        this.googleSheet = new GoogleSheet();
     }
 
     handleClick(i: number) {
@@ -76,6 +81,8 @@ class App extends React.Component {
             ...this.state,
             currentUserId: this.state.currentUserId + 1
         });
+
+        this.googleSheet.exportDataToSheet(this.state.currentUserId);
     }
 
     saveFormsData(formData: FormData) {
@@ -120,7 +127,7 @@ class App extends React.Component {
 
         let saveNewRenterButton: JSX.IntrinsicElements['button'];
         if (selectedTab !== 5) {
-            // need to find a better way of identifying tab
+            // need to find a better way to identifying tab
             saveNewRenterButton = (
                 <button id="send2google" className="renting-submit" onClick={() => this.saveData()}>
                     Enregistrer la location
