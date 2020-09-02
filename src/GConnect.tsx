@@ -3,10 +3,8 @@ import React from 'react';
 import Gcredentials from '../res/credentials.json';
 import { GoogleStatus } from './Helpers/Connexion';
 
-const gapi = (window as any).gapi;
-
 class GConnect extends React.Component<any, any> {
-    constructor(props) {
+    constructor(props: any) {
         super(props);
 
         this.updateSigninStatus = this.updateSigninStatus.bind(this);
@@ -58,14 +56,14 @@ class GConnect extends React.Component<any, any> {
         const signoutButton = document.getElementById('signout_button');
 
         if (isSignedIn) {
-            console.log("You're now connected!");
+            console.log("GConnect::updateSigninStatus:You're now connected!");
 
             authorizeButton.style.display = 'none';
             signoutButton.style.display = 'block';
 
             (this.props as any).updateGStatus(GoogleStatus.CONNECTED);
         } else {
-            console.log("You're now logged out!");
+            console.log("GConnect::updateSigninStatus:You're now logged out!");
 
             authorizeButton.style.display = 'block';
             signoutButton.style.display = 'none';

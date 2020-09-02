@@ -5,7 +5,7 @@ import TabsHeader from './TabHeader';
 type TabsProps = {
     selectedTab: number;
     onClick: () => void;
-    children: Array<any>;
+    children: Array<JSX.Element>;
 };
 
 const setTabNotSelected = 'tab-list-item';

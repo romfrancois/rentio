@@ -7,7 +7,7 @@ type TabHeaderProps = {
     className: string;
 };
 
-const TabHeader = ({ label, className, onClick, position }: TabHeaderProps) => {
+const TabHeader = ({ label, className, onClick, position }: TabHeaderProps): JSX.Element => {
     return (
         <li key={label} className={className} onClick={() => onClick(position)}>
             {label}

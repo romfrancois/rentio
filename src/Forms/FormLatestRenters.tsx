@@ -1,7 +1,5 @@
 import React from 'react';
 
-const gapi = (window as any).gapi;
-
 const SPREADSHEET_ID = '1dKSCcTzZjuB3twn8C604Ibf8HPj5I0g7-4peFioNbEs';
 const SPREADSHEET_NAME = 'Sheet1';
 
