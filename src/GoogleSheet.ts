@@ -3,7 +3,7 @@ const SPREADSHEET_NAME = 'Sheet1';
 
 export default class GoogleSheet {
     exportDataToSheet(idToBackup: number) {
-        console.log('exportDataToSheet for userId: ', idToBackup);
+        // console.log('exportDataToSheet for userId: ', idToBackup);
 
         const formattedData = this.prepareToSaveData(idToBackup);
         // console.log('values: ', formattedData.flat());
