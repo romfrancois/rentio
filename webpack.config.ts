@@ -1,6 +1,7 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import ZipPlugin from 'zip-webpack-plugin';
 
 module.exports = {
     entry: './src/index.tsx',
@@ -43,6 +44,11 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'res', 'html', 'index.html')
+        }),
+        new ZipPlugin({
+            // OPTIONAL: defaults to the Webpack output filename (above) or,
+            // if not present, the basename of the path
+            filename: 'rentio.zip'
         })
     ]
 

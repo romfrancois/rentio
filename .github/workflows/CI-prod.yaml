@@ -1,0 +1,66 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI-prod
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs eslint without fixing any issues
+      # run: echo \tRunning ...
+      # - name: eslint
+      #   uses: getsentry/action-eslint-fix@v1
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     dry: true
+          
+      # Set up Node
+      - name: Set up Node [12.13.0]
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.0'
+
+      # Build the project and the artifact
+      - name: Build Project
+        run: |
+          npm install
+          npm run build --if-present
+
+      # Get the current date
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      # Temporary archive the artifact
+      - name: Temporary archive the artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: rentio-${{ steps.date.outputs.date }}
+          path: ./dist
+          if-no-files-found: ignore
+          
+      # Upload the artifact to the server
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER_PROD }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          git-ftp-args:  --insecure
+          local-dir: ./dist

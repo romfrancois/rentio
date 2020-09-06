@@ -17,13 +17,6 @@
     "start": "webpack-dev-server --mode development --open",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm test",
-      "pre-push": "npm run lint && npm test",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "author": "romain.francois@gmail.com",
   "license": "ISC",
   "devDependencies": {
@@ -60,6 +53,7 @@
     "eslint-plugin-react": "7.20.0",
     "prettier": "2.0.5",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "zip-webpack-plugin": "3.0.0"
   }
 }

@@ -130,7 +130,7 @@ class App extends React.Component {
             // need to find a better way to identifying tab
             saveNewRenterButton = (
                 <button id="send2google" className="renting-submit" onClick={() => this.saveData()}>
-                    Enregistrer la location
+                    Sauvegarder la location
                 </button>
             );
         } else {

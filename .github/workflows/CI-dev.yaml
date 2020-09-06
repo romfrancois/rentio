@@ -1,0 +1,69 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI-dev
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches-ignore:
+      - 'master'
+      - 'releases/**'
+
+jobs:
+  
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs eslint without fixing any issues 
+      # - name: eslint
+      #   uses: getsentry/action-eslint-fix@v1
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     dry: true
+          
+      # Set up Node
+      - name: Set up Node [12.13.0]
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.0'
+
+      # Build the project and the artifact
+      - name: Build Project
+        run: |
+          npm install
+          npm run build --if-present
+
+      # List all the files and the artifact
+      - name: List output files
+        run: |
+          ls
+          ls -la ./dist
+
+      # Upload the artifact to the server
+      # - name: Upload the artifact to the server
+      #   run: git ftp push --insecure --user=romain --passwd=AKvpAKvp1981 sftp://theaddicts.synology.me:82/web/testgithubaction/ --all --syncroot ./dist init
+
+      # Upload the artifact to the server
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER_DEV }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          git-ftp-args:  --insecure
+          local-dir: ./dist
+      
+      # - name: FTP-Deploy-Action
+      #   uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      #   with:
+      #     ftp-server: sftp://theaddicts.synology.me:82/web/testgithubaction/
+      #     ftp-username: romain
+      #     ftp-password: AKvpAKvp1981
+      #     git-ftp-args: --insecure --all
+      #     local-dir: ./dist
+          
